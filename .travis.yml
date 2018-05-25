@@ -1,7 +1,10 @@
 language: go
 go:
-- 1.8.x
+- master
 go_import_path: github.com/bakaoh/go-starter
+cache:
+  directories:
+  - vendor
 before_install:
 - openssl aes-256-cbc -K $encrypted_93a5d0d64bc9_key -iv $encrypted_93a5d0d64bc9_iv
   -in client-secret.json.enc -out client-secret.json -d
@@ -20,3 +23,4 @@ deploy:
   default: true
   keyfile: client-secret.json
   project: bakatsar-1
+  on: dpl
