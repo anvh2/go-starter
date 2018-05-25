@@ -1,0 +1,18 @@
+language: go
+
+go:
+  - 1.8.x
+  - master
+
+go_import_path: github.com/bakaoh/go-starter
+
+install:
+  - go get -u github.com/bakaoh/go-starter
+  - go get -u github.com/kardianos/govendor
+  - govendor sync
+script:
+  - bash ./scripts/gofmt.sh
+  - bash ./scripts/coverage.sh
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
