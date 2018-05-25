@@ -1,17 +1,22 @@
 language: go
-
 go:
-  - 1.8.x
-
+- 1.8.x
 go_import_path: github.com/bakaoh/go-starter
-
+before_install:
+- openssl aes-256-cbc -K $encrypted_93a5d0d64bc9_key -iv $encrypted_93a5d0d64bc9_iv
+  -in client-secret.json.enc -out client-secret.json -d
 install:
-  - go get -u github.com/bakaoh/go-starter
-  - go get -u github.com/kardianos/govendor
-  - govendor sync
+- go get -u github.com/bakaoh/go-starter
+- go get -u github.com/kardianos/govendor
+- govendor sync
 script:
-  - bash ./scripts/gofmt.sh
-  - bash ./scripts/coverage.sh
-
+- bash ./scripts/gofmt.sh
+- bash ./scripts/coverage.sh
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
+- bash <(curl -s https://codecov.io/bash)
+deploy:
+  provider: gae
+  skip_cleanup: true
+  default: true
+  keyfile: client-secret.json
+  project: bakatsar-1
