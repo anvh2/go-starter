@@ -1,6 +1,10 @@
 package main
 
-import "github.com/gin-gonic/gin"
+import (
+	log "github.com/bakaoh/go-common"
+
+	"github.com/gin-gonic/gin"
+)
 
 func setupRouter() *gin.Engine {
 	r := gin.Default()
@@ -11,6 +15,8 @@ func setupRouter() *gin.Engine {
 }
 
 func main() {
+	log.NewLog("test.log")
+	log.Log.Println("Running")
 	r := setupRouter()
 	r.Run(":8080")
 }
