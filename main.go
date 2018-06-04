@@ -1,8 +1,6 @@
 package main
 
 import (
-	log "github.com/bakaoh/go-common"
-
 	"github.com/gin-gonic/gin"
 )
 
@@ -11,12 +9,17 @@ func setupRouter() *gin.Engine {
 	r.GET("/ping", func(c *gin.Context) {
 		c.String(200, "pang")
 	})
+	// pprof.Register(r)
 	return r
 }
 
 func main() {
-	log.NewLog("test.log")
-	log.Log.Println("Running")
+	gin.SetMode(gin.ReleaseMode)
+	// i, _ := testErr()
+	// println(i)
+
+	// log.NewLog("test.log")
+	// log.Log.Println("Running")
 	r := setupRouter()
-	r.Run(":8080")
+	r.Run(":8088")
 }

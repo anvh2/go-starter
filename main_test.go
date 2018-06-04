@@ -21,7 +21,7 @@ func TestPingRoute(t *testing.T) {
 	assert.Equal(t, "pang", w.Body.String())
 }
 
-func BenchmarkHello(b *testing.B) {
+func BenchmarkTemplate(b *testing.B) {
 	if testing.Short() {
 		b.Skip("skipping test in short mode.")
 	}
